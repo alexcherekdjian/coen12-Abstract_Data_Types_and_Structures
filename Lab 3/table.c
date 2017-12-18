@@ -32,9 +32,9 @@ SET *createSet(int maxElts){
     sp->flags = malloc(sizeof(int*)*maxElts);	 // allocating memory for character array and initializing character pointer
     assert (sp->flags != NULL);                  // making sure character array pointer for flags was allocated
 
-    for (int i = 0; i < maxElts; i++){  	     // initializing all flags in flag array to EMPTY
+    for (int i = 0; i < maxElts; i++){  	 // initializing all flags in flag array to EMPTY
         sp->flags[i] = EMPTY;
-	}
+    }
 
     return sp;                                   // returning pointer
 }
@@ -46,8 +46,8 @@ void destroySet(SET *sp){
     for (int i=0; i < (sp->count); i++) {
         if (sp->flags [i] == FILLED){
             free (sp->elts[i]);                  // if flag array states FILLED, free element in array
-		}    
-	}
+	}    
+    }
 
     free (sp->elts);                             // free array pointer
     free (sp->flags);                            // free flag array pointer
@@ -133,29 +133,30 @@ static int findElement(SET *sp, char *elt, bool *found){
         }
         if (sp->flags[result] == DELETED){
             if (deleteCounter != 1){             // make counter so marker only initializes the first time
-		  marker = result;                       // assign marker to index of result
-           	  deleteCounter++;                   // increase counter so first deleted spot is saved only
+		  marker = result;               // assign marker to index of result
+           	  deleteCounter++;               // increase counter so first deleted spot is saved only
              }
         }
         if (result == ((sp->len)-1)){
             result = 0;                          // if index of result is = to the last index, reset result to continue at start
         }else
             result++;                            // if not returned, increase result to search next spot
-    }
+        }
     
-	*found = false;                              // if exited loop initialize found to false since search failed
-	if (marker == -1){                           // if deleted spot not found then return the empty spot
-        return result;
-    }else {
-        return marker;                           // if deleted marker found return marker
+	*found = false;                          // if exited loop initialize found to false since search failed
+	if (marker == -1){                       // if deleted spot not found then return the empty spot
+            return result;
+        }else {
+            return marker;                       // if deleted marker found return marker
 	}
 }
 
 unsigned hashString(char *s) {
-
-	unsigned hash = 0;                           // hash function given to us for lab
-		while (*s != '\0')
-			hash = 31 * hash + *s++;             // the hash function
+	unsigned hash = 0;                       // hash function given to us for lab
+	
+	while (*s != '\0')
+		hash = 31 * hash + *s++; // the hash function
+	
     	return hash;                             // returning hash result
 }
 

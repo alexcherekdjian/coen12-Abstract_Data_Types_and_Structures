@@ -3,6 +3,7 @@ Alex Cherekdjian
 COEN 12 Lab
 January 9, 2017
 TA: Alberto Diaz
+Purpose: Counts the number of words in a file
 */
 
 #include <stdio.h>
